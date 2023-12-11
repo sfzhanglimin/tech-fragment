@@ -1,0 +1,214 @@
+{
+  "ver": "2.3.12",
+  "importer": "gltf",
+  "imported": true,
+  "uuid": "dd207bf5-225c-46d1-b4b4-268609e566b9",
+  "files": [],
+  "subMetas": {
+    "24329": {
+      "importer": "gltf-material",
+      "uuid": "dd207bf5-225c-46d1-b4b4-268609e566b9@24329",
+      "displayName": "",
+      "id": "24329",
+      "name": "Ground_0101_03.material",
+      "userData": {
+        "gltfIndex": 2
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "d8bda": {
+      "importer": "gltf-mesh",
+      "uuid": "dd207bf5-225c-46d1-b4b4-268609e566b9@d8bda",
+      "displayName": "",
+      "id": "d8bda",
+      "name": "Ground_0101.mesh",
+      "userData": {
+        "gltfIndex": 0,
+        "triangleCount": 168
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "511e5": {
+      "importer": "texture",
+      "uuid": "dd207bf5-225c-46d1-b4b4-268609e566b9@511e5",
+      "displayName": "",
+      "id": "511e5",
+      "name": "grass1.texture",
+      "userData": {
+        "wrapModeS": "repeat",
+        "wrapModeT": "repeat",
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "none",
+        "anisotropy": 0,
+        "isUuid": false,
+        "imageUuidOrDatabaseUri": "db://assets/model/Farm_1/grass1.png"
+      },
+      "ver": "1.0.22",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "b36e5": {
+      "importer": "texture",
+      "uuid": "dd207bf5-225c-46d1-b4b4-268609e566b9@b36e5",
+      "displayName": "",
+      "id": "b36e5",
+      "name": "grass2.texture",
+      "userData": {
+        "wrapModeS": "repeat",
+        "wrapModeT": "repeat",
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "none",
+        "anisotropy": 0,
+        "isUuid": false,
+        "imageUuidOrDatabaseUri": "db://assets/model/Farm_1/grass2.png"
+      },
+      "ver": "1.0.22",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "ca0ee": {
+      "importer": "texture",
+      "uuid": "dd207bf5-225c-46d1-b4b4-268609e566b9@ca0ee",
+      "displayName": "",
+      "id": "ca0ee",
+      "name": "grass3.texture",
+      "userData": {
+        "wrapModeS": "repeat",
+        "wrapModeT": "repeat",
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "none",
+        "anisotropy": 0,
+        "isUuid": false,
+        "imageUuidOrDatabaseUri": "db://assets/model/Farm_1/grass3.png"
+      },
+      "ver": "1.0.22",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "89c2c": {
+      "importer": "gltf-material",
+      "uuid": "dd207bf5-225c-46d1-b4b4-268609e566b9@89c2c",
+      "displayName": "",
+      "id": "89c2c",
+      "name": "Ground_0101_01.material",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "b6c6c": {
+      "importer": "gltf-material",
+      "uuid": "dd207bf5-225c-46d1-b4b4-268609e566b9@b6c6c",
+      "displayName": "",
+      "id": "b6c6c",
+      "name": "Ground_0101_02.material",
+      "userData": {
+        "gltfIndex": 1
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "736f5": {
+      "importer": "gltf-scene",
+      "uuid": "dd207bf5-225c-46d1-b4b4-268609e566b9@736f5",
+      "displayName": "",
+      "id": "736f5",
+      "name": "Farm_1.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [
+      {
+        "name": "grass1.png",
+        "uri": "db://assets/model/Farm_1/grass1.png"
+      },
+      {
+        "name": "grass2.png",
+        "uri": "db://assets/model/Farm_1/grass2.png"
+      },
+      {
+        "name": "grass3.png",
+        "uri": "db://assets/model/Farm_1/grass3.png"
+      }
+    ],
+    "redirect": "dd207bf5-225c-46d1-b4b4-268609e566b9@736f5",
+    "lods": {
+      "enable": false,
+      "hasBuiltinLOD": false,
+      "options": [
+        {
+          "screenRatio": 0.25,
+          "faceCount": 1
+        },
+        {
+          "screenRatio": 0.125,
+          "faceCount": 0.25
+        },
+        {
+          "screenRatio": 0.01,
+          "faceCount": 0.1
+        }
+      ]
+    },
+    "assetFinder": {
+      "meshes": [
+        "dd207bf5-225c-46d1-b4b4-268609e566b9@d8bda"
+      ],
+      "skeletons": [],
+      "textures": [
+        "dd207bf5-225c-46d1-b4b4-268609e566b9@511e5",
+        "dd207bf5-225c-46d1-b4b4-268609e566b9@b36e5",
+        "dd207bf5-225c-46d1-b4b4-268609e566b9@ca0ee"
+      ],
+      "materials": [
+        "dd207bf5-225c-46d1-b4b4-268609e566b9@89c2c",
+        "dd207bf5-225c-46d1-b4b4-268609e566b9@b6c6c",
+        "dd207bf5-225c-46d1-b4b4-268609e566b9@24329"
+      ],
+      "scenes": [
+        "dd207bf5-225c-46d1-b4b4-268609e566b9@736f5"
+      ]
+    }
+  }
+}
