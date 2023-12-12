@@ -13,7 +13,8 @@ export class Test extends Component {
 
     createMesh(){
         const mesh = utils.MeshUtils.createMesh({
-            positions:[0,0,0,0,0,1,1,0,1],
+            positions:[0,0,0,0,0,1,1,0,1,1,0,0],
+            indices:[0,1,2,0,2,3],
         });
         this.meshRender.mesh = mesh;
     }
