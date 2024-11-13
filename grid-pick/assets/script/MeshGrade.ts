@@ -49,7 +49,7 @@ export class MeshGrade extends Component {
 
     protected update(dt: number): void {
         const touch = input.getTouch(0)
-        if (!touch.getUILocation().equals(this._lastTouch,0)) {
+        if (touch && !touch.getUILocation().equals(this._lastTouch,0)) {
             touch.getUILocation(this._lastTouch)
             this.onTouchEnd(touch)
         }
