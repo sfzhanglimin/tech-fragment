@@ -1,0 +1,183 @@
+<html class="dark">
+
+<head>
+    <!-- <link rel="icon" href="./favicon.ico" /> -->
+    <meta charset="utf-8" />
+    <title>
+        <%=title%>
+    </title>
+    <meta name="viewport"
+        content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1,minimal-ui=true" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="full-screen" content="yes" />
+    <meta name="screen-orientation" content="portrait" />
+    <meta name="x5-fullscreen" content="true" />
+    <meta name="360-fullscreen" content="true" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="stylesheet" type="text/css" href="./index.css" />
+    <style>
+        #service-view {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            padding: 0px 0px;
+            top: 0px;
+            right: 0px;
+            display: none;
+        }
+
+        #chatLayer {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            padding: 0px 0px;
+            top: 0px;
+            right: 0px;
+        }
+
+        .chatBtn {
+            top: 10px;
+            right: 10px;
+            z-index: 9999;
+            padding: 10px 20px;
+            color: rgba(255, 255, 255, 0);
+            background-color: rgba(255, 255, 255, 0);
+            border: none;
+            width: 69px;
+            height: 70px;
+            position: fixed;
+            background-repeat: no-repeat;
+            background-image: url("dist/chat/ymcl_guanbi_anniu.png");
+            background-size: auto;
+        }
+
+        .chatBtn:active {
+            transform: scale(0.9);
+        }
+    </style>
+
+    <script src="./config.js"></script>
+</head>
+
+<body>
+    <%- include(cocosToolBar, {config: config}) %>
+        <div style="display: flex;flex: auto;align-items: center;">
+            <%- include ./dist/index.html %>
+                <div id="content" class="content">
+                    <div class="contentWrap">
+                        <div id="GameDiv" class="wrapper">
+                            <div id="Cocos3dGameContainer">
+                                <canvas id="GameCanvas" tabindex="-1" style="background-color: '';"></canvas>
+                                <div id="service-view">
+                                    <div class="chatBtn" onclick="onClickCloseService()"></div>
+                                </div>
+                            </div>
+                            <div id="splash">
+                                <div class="progress-bar stripes"><span></span></div>
+                            </div>
+                            <div id="bulletin">
+                                <div id="sceneIsEmpty" class="inner">
+                                    <%=tip_sceneIsEmpty%>
+                                </div>
+                            </div>
+                            <div class="error" id="error">
+                                <div class="title">Error <i>(Please open the console to see detailed errors)</i></div>
+                                <div class="error-main"></div>
+                                <div class="error-stack"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="footer">
+                        Created with <a href="https://www.cocos.com/products" target="_blank"
+                            title="Cocos Creator">Cocos Creator</a>
+                    </p>
+                </div>
+        </div>
+        <%- include(cocosTemplate, {}) %>
+</body>
+
+</html>
+
+<script>
+    document.getElementsByClassName('toolbar')[0].insertAdjacentHTML('afterbegin', '<div><button id="btn-show-tree">Tree</button></div>');
+    const devtoolsBtn = document.getElementById('btn-show-tree');
+    let isOpen = !!localStorage.getItem('ccc_devtools_show');
+    toggle(isOpen);
+    devtoolsBtn.addEventListener('click', () => {
+        isOpen = !isOpen;
+        toggle(isOpen);
+    }, false);
+
+    function toggle(isOpen) {
+        const devApp = document.getElementById('dev-app');
+        window.ccdevShow = isOpen;
+        if (isOpen) {
+            devApp.style.display = 'flex';
+            devtoolsBtn.classList.add('checked');
+            localStorage.setItem('ccc_devtools_show', 1);
+        } else {
+            devApp.style.display = 'none';
+            devtoolsBtn.classList.remove('checked');
+            localStorage.removeItem('ccc_devtools_show');
+        }
+    }
+
+    function onClickCloseService() {
+        const doc = document.getElementById("chatLayer")
+        doc.parentElement.style.display = "none"
+        doc.parentElement.removeChild(doc)
+    }
+
+    (function (window) {
+        var singleChat = {
+            origin: "*",
+
+            _send: function (type, data) {
+                const doc = document.getElementById("chatLayer")
+                if (doc) {
+                    const ifa = doc.contentWindow
+                    ifa.postMessage({ type, data }, this.origin)
+                }
+            },
+
+            InitChat: function (dat) {
+                this._send("InitSDK", dat)
+            }
+        }
+        window.Chat = singleChat
+    })(window)
+
+    window.onmessage = (event) => {
+        if (event.data && event.data.data) {
+            let result = null;
+            try {
+                result = JSON.parse(event.data.data);
+                if (result) {
+                    switch (result.type) {
+                        case "show-service": {
+                            const div = document.getElementById("service-view");
+                            div.style.display = "block";
+                            const iframe = document.createElement("iframe");
+                            iframe.src = "https://game.h5navi.com/h5/chat/index.html";
+                            iframe.id = "chatLayer"
+                            iframe.title = "chatLayer"
+                            iframe.className = "chatLayer"
+                            iframe.onload = () => {
+                                Chat.InitChat(result.data)
+                            }
+                            div.appendChild(iframe);
+                        }
+                            break;
+                    }
+                }
+            }
+            catch (e) {
+                console.log("post error data" + event.data.data);
+            }
+        }
+    }
+
+
+</script>

@@ -1,8 +1,8 @@
 {
-  "ver": "1.0.3",
-  "importer": "buffer",
+  "ver": "1.1.50",
+  "importer": "terrain",
   "imported": true,
-  "uuid": "4ffc87e5-f746-4247-a02f-7efd740e539f",
+  "uuid": "840439db-2a71-491a-8a1c-79842b54f092",
   "files": [
     ".bin",
     ".json"
