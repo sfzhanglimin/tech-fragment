@@ -30,7 +30,7 @@ export class MeshGrade extends Component {
     public unableMaterial: Material = null;
 
     touchPoint: Vec2 = Vec2.ZERO.clone();
-    pointRay: geometry.Ray = null;
+    pointRay: geometry.Ray = new geometry.Ray();
 
     private meshGeometries: primitives.IDynamicGeometry = null;
 
@@ -38,6 +38,8 @@ export class MeshGrade extends Component {
 
     private _gridSize = .5
     private _heightOffset = 1.0
+
+    private _subNode:MeshRenderer = null;
 
     start() {
         
@@ -56,11 +58,6 @@ export class MeshGrade extends Component {
     }
 
     protected createMeshPoints() {
-        const material = new Material()
-        material.initialize({
-            effectName: "builtin-unlit"
-        })
-
         const vec0 = v3(-this._gridSize, 0, -this._gridSize)
         const vec1 = v3(-this._gridSize, 0, this._gridSize)
         const vec2 = v3(this._gridSize, 0, this._gridSize)
@@ -109,9 +106,14 @@ export class MeshGrade extends Component {
         }
         const newMesh = utils.MeshUtils.createDynamicMesh(0, this.meshGeometries)
 
-        const render = this.node.addComponent(MeshRenderer)
+        const subNode = new Node()
+        subNode.name = "subNode"
+        const render = subNode.addComponent(MeshRenderer)
         render.mesh = newMesh;
         render.setSharedMaterial(this.ableMaterial, 0);
+
+        subNode.parent = this.node
+        this._subNode = render
 
     }
 
@@ -155,7 +157,7 @@ export class MeshGrade extends Component {
                 ]
 
             this.meshGeometries.positions = new Float32Array(positions)
-            this.node.getComponent(MeshRenderer).mesh.updateSubMesh(0, this.meshGeometries)
+            this._subNode.mesh.updateSubMesh(0, this.meshGeometries)
         }
     }
 
@@ -168,7 +170,7 @@ export class MeshGrade extends Component {
 
     protected checkScreenPoint(aTouch: Touch) {
         aTouch.getLocation(this.touchPoint)
-        this.pointRay = this.camera.screenPointToRay(this.touchPoint.x, this.touchPoint.y, this.pointRay)
+        this.camera.screenPointToRay(this.touchPoint.x, this.touchPoint.y, this.pointRay)
         if (this.pointRay && physics.PhysicsSystem.instance.raycastClosest(this.pointRay)) {
             return physics.PhysicsSystem.instance.raycastClosestResult;
         }
